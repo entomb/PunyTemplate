@@ -2,7 +2,7 @@
 /**
  * This file is part of the entomb.PunyTemplate
  *
- * @license http://opensource.org/licenses/bsd-license.php BSD
+ * @license http://opensource.org/licenses/mit-license.php MIT
  */
 namespace entomb\PunyTemplate\Exception;
 
