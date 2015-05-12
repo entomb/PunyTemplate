@@ -43,13 +43,23 @@ class View {
         }
 
 
+
+        if(is_readable($this->conf_CompiledFile)){
+            return $this;
+        }
+
+
+
+
+
+
+
         $buffer = fopen($this->conf_CompiledFile, "w");
         fwrite($buffer, $this->_RAW); 
         fclose($buffer);
 
         return $this;
     }
-
 
     public function parse($data=null){
         if(is_array($data)){
