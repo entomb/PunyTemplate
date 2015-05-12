@@ -1,0 +1,1 @@
+<h1>simple view</h1>

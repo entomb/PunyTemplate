@@ -14,8 +14,8 @@ class ClassExistsTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
         $this->skeleton = new PunyTemplate(array(
                             'BaseDir' => __DIR__.'/Fake',
-                            'TemplateDir' => '/compiled',
-                            'CompileDir' => '/views',
+                            'TemplateDir' => '/views',
+                            'CompileDir' => '/compiled',
                         ));
     }
 

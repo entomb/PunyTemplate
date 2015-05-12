@@ -5,6 +5,7 @@
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
 namespace entomb\PunyTemplate;
+use entomb\PunyTemplate\View as View;
 
 class PunyTemplate {
 
@@ -55,6 +56,19 @@ class PunyTemplate {
 
     public function baseDir(){
         return $this->conf_BaseDir;
+    }
+
+
+
+
+
+    public function parse($template,$data=null){
+
+        $view = new View($this->tplDir().DIRECTORY_SEPARATOR.$template);
+        
+        $view->compile($this->compileDir());
+
+        return $view->parse($data);
     }
 
 }
