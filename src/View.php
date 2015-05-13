@@ -17,7 +17,7 @@ class View {
     private $_RESULT = '';
 
     function __construct($filepath=null){
-        $this->load($filepath);
+        $this->load($filepath); 
     }
 
 
@@ -49,13 +49,14 @@ class View {
         }
 
 
+        $this->_COMPILED = $this->_RAW;
 
-
-
-
+        foreach($this->Parser->instances as $Parser){
+            $Parser->apply($this->_COMPILED);
+        }
 
         $buffer = fopen($this->conf_CompiledFile, "w");
-        fwrite($buffer, $this->_RAW); 
+        fwrite($buffer, $this->_COMPILED); 
         fclose($buffer);
 
         return $this;

@@ -6,6 +6,7 @@
  */
 namespace entomb\PunyTemplate;
 use entomb\PunyTemplate\View as View;
+use entomb\PunyTemplate\Parser as Parser;
 
 class PunyTemplate {
 
@@ -13,6 +14,7 @@ class PunyTemplate {
     private $conf_BaseDir     ='';
     private $conf_TemplateDir ='/views';
     private $conf_CompileDir  ='/tmp/punytpl';
+    private $conf_ParserList  = Array('regex_Foreach','regex_If','regex_Variable');
 
 
     function __construct($config=null){
@@ -42,6 +44,8 @@ class PunyTemplate {
             throw new Exception\RuntimeException('File path ' . $this->compileDir() . ' is either not valid or not writable');
         }
 
+
+        $this->Parser = new ParserHandler($this->conf_ParserList);
     }
     
 
@@ -61,13 +65,17 @@ class PunyTemplate {
 
 
 
-
     public function parse($template,$data=null){
 
         $view = new View($this->tplDir().DIRECTORY_SEPARATOR.$template);
         
+        //inject parsers
+        $view->Parser = &$this->Parser;
+
+        //compile it
         $view->compile($this->compileDir());
 
+        //parse the data
         return $view->parse($data);
     }
 
